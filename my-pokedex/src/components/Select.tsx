@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Card from "./Card"
 
 export default function Select() {
-// const [pokemonName, setPokemonName] = useState('')
 const [pokemonIndex, setPokemonIndex] = useState('')
 const { pokemons } = useFetch()
 
