@@ -1,13 +1,16 @@
-import Header from './components/Header'
-import Select from './components/Select'
-import { useFetch } from './hooks/useFetch'
+import Favourites from './pages/Favourites';
+import Home from './pages/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const {pokemons} = useFetch()
   return (
     <>
-     <Header />
-     <Select />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/favourites" element={<Favourites />} />
+        </Routes>
+      </Router>
     </>
   )
 }

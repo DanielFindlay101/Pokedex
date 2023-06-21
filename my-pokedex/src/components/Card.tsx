@@ -37,7 +37,9 @@ export default function Card({ pokemonIndex }: CardProps) {
       className="p-4 bg-green-300"
     >Select a Pokemon to get started!</h1> : 
       <>
-       <img src={getPokemonImage(pokemonIndex)} alt="pokemon-sprite" />
+       <img src={getPokemonImage(pokemonIndex)} alt="pokemon-sprite" 
+        className="bg-yellow-100 rounded-b-3xl"
+       />
        <div className="card-body">
         <h2 className="card-title"></h2>
         <p>{description}</p>
