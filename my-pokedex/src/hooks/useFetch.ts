@@ -7,7 +7,7 @@ export interface pokemonData {
 }
 
 export const useFetch = () =>  {
-  const [pokemons, setPokemons] = useState<pokemonData[] | null>(null)
+  const [pokemons, setPokemons] = useState<pokemonData[]>()
 
   const getPokemon = async () => {
      axios.get(
