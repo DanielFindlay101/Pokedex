@@ -7,6 +7,7 @@ export default function Select() {
 const [pokemonIndex, setPokemonIndex] = useState('')
 const { pokemons } = useFetch()
 
+const pokemonID = +pokemonIndex
 
   return (
     <>
@@ -25,7 +26,7 @@ const { pokemons } = useFetch()
             <option key={index} value={index + 1}>{pokemon.name}</option>
           ))}
         </select>
-        <Card pokemonIndex={pokemonIndex}  
+        <Card pokemonID={pokemonID}  
         />
      </div>
   </>

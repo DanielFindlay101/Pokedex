@@ -2,21 +2,20 @@ import { create } from "zustand";
 
 interface FavState {
     favPokemon: {
-        name: string,
-        id: string
+        // name: string,
+        id: number
     }[]
-    addToFavs: (pokemon: string) => void
-    removeFromFavs: (id: string) => void
+    addToFavs: (pokemonID: number) => void
+    removeFromFavs: (id: number) => void
 }
 
 export const useFavStore = create<FavState>()((set) => ({
     favPokemon: [],
-    addToFavs: (pokemon) => set((state) => ({ 
+    addToFavs: (pokemonID) => set((state) => ({ 
         favPokemon: [
             ...state.favPokemon,
             {
-                name: pokemon,
-                id: pokemon
+                id: pokemonID
             }
         ] 
     })),

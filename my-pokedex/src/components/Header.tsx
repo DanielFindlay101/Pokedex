@@ -7,7 +7,6 @@ export default function Header() {
         <Link to='/favourites'><p className="bg-secondary px-4 rounded-md text-3xl cursor-pointer text-red-500">
           ❤️
         </p></Link>
-        <button className="btn">🗑️</button>
     </nav>
   )
 }
