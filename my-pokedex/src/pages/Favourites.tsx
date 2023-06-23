@@ -14,16 +14,18 @@ export default function Favourites() {
         <ArrowLeftOnRectangleIcon className='w-5 cursor-pointer' />
        </Link>
      </nav>
-     <div className='w-full h-screen bg-blue-300 p-10 grid grid-cols-3 justify-items-center'>
+     <div className='w-full h-screen bg-blue-300 p-10 flex justify-center'>
       {favPokemon.length === 0 ? 
          <p>You currently have no favourite pokemon</p> 
         :
         <>
-        {favPokemon.map((fav, index) => (
+        <div className='grid grid-cols-3 gap-10 justify-items-center'>
+         {favPokemon.map((fav, index) => (
           <div key={index}>
             <FavCards fav={fav} />
           </div>
         ))}
+        </div>
         </>
       }
      </div>

@@ -1,7 +1,6 @@
 
 import { useFetch } from "../hooks/useFetch"
 import { useState } from 'react'
-import { useFavStore } from "../store/useFavStore"
 import Card from "./Card"
 
 export default function Select() {
