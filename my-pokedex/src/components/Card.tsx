@@ -12,7 +12,6 @@ export default function Card({ pokemonID }: CardProps) {
   const [type, setType] = useState('')
   const [pokemonName, setPokemonName] = useState('')
   const addToFavs = useFavStore((state) => state.addToFavs)
-  const favPokemon = useFavStore((state) => state.favPokemon)
   
   const getPokemonDescription = async(id: number) => {
    await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)

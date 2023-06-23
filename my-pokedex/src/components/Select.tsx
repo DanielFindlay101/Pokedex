@@ -7,13 +7,7 @@ import Card from "./Card"
 export default function Select() {
 const [pokemonIndex, setPokemonIndex] = useState('')
 const { pokemons } = useFetch()
-const setFavPokemonID = useFavStore((state) => state.setFavPokemonID)
-const favPokemon = useFavStore((state) => state.favPokemon)
-
 const pokemonID = +pokemonIndex
-setFavPokemonID(pokemonID)
-
-console.log(favPokemon)
 
   return (
     <>

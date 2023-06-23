@@ -9,7 +9,6 @@ interface FavCardProps {
 }
 
 export default function FavCards({ fav }:FavCardProps ) {
-    const favPokemonID = useFavStore((state) => state.favPokemonID)
     const removeFromFavs = useFavStore((state) => state.removeFromFavs)
 
   return (
@@ -18,7 +17,7 @@ export default function FavCards({ fav }:FavCardProps ) {
         <p>{fav.id}</p>
         <TrashIcon
          className="w-5"
-         onClick={() => removeFromFavs(favPokemonID)} 
+         onClick={() => removeFromFavs(fav.id)} 
         />
     </div>
   )
