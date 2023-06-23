@@ -41,8 +41,6 @@ export default function Card({ pokemonID }: CardProps) {
     getPokemonName(pokemonID)
   }, [pokemonID])
 
-  console.log(favPokemon)
-
   return (
   <div className="card w-96 bg-slate-200 shadow-xl rounded-2xl"> 
     {!pokemonID? <h1
