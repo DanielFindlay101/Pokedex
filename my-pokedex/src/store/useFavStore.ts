@@ -7,10 +7,16 @@ interface FavState {
     }[]
     addToFavs: (pokemonName: string, pokemonID: number) => void
     removeFromFavs: (id: number | null) => void
+    showNotification: boolean
+    setShowNotification: (val: boolean) => void
 }
 
 export const useFavStore = create<FavState>()((set) => ({
     favPokemon: [],
+    showNotification: false,
+    setShowNotification: (val) => set((state) => ({ 
+        showNotification: state.showNotification = val
+    })),
     addToFavs: (pokemonName, pokemonID) => set((state) => ({ 
         favPokemon: [
             ...state.favPokemon,

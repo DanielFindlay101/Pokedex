@@ -12,6 +12,7 @@ export default function Card({ pokemonID }: CardProps) {
   const [type, setType] = useState('')
   const [pokemonName, setPokemonName] = useState('')
   const addToFavs = useFavStore((state) => state.addToFavs)
+  const setShowNotification = useFavStore((state) => state.setShowNotification)
   
   const getPokemonDescription = async(id: number) => {
    await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
@@ -40,22 +41,31 @@ export default function Card({ pokemonID }: CardProps) {
     getPokemonName(pokemonID)
   }, [pokemonID])
 
+  setTimeout(() => {
+    setShowNotification(false)
+  }, 5000)
+
   return (
-  <div className="card w-96 bg-slate-200 shadow-xl rounded-2xl"> 
+  <div className="w-96 flex flex-col bg-slate-200 shadow-xl rounded-2xl"> 
     {!pokemonID? <h1
       className="p-4 bg-green-300 flex justify-center"
     >Select a Pokemon to get started!</h1> : 
       <>
-      <h1 className="bg-green-200 p-2 flex justify-center">{pokemonName}</h1>
-       <img src={getPokemonImage(pokemonID)} alt="pokemon-sprite" 
-        className="bg-yellow-100 rounded-b-3xl"
-       />
+      <h1 className="bg-green-200 p-2 flex justify-center uppercase">{pokemonName}</h1>
+       <div className="bg-yellow-100 flex justify-center">
+        <img src={getPokemonImage(pokemonID)} alt="pokemon-sprite" 
+         className="rounded-b-3xl w-64"
+        />
+      </div>
        <div className="card-body">
         <h2 className="card-title"></h2>
         <p>{description}</p>
         <div className="card-actions bg-red-200 justify-between items-center rounded-md">
           <span className="pl-2">Type: {type}</span>
-         <button onClick={() => addToFavs(pokemonName, pokemonID)} className="btn btn-secondary rounded-md">
+         <button onClick={() => { 
+            addToFavs(pokemonName, pokemonID); 
+            setShowNotification(true)}}
+          className="btn btn-secondary rounded-md">
           <span className="text-red-500 text-3xl hover:text-red-300">❤️</span>  
          </button>
         </div>

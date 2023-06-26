@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useFavStore } from './store/useFavStore';
 
 function App() {
-  const favPokemon = useFavStore((state) => state.favPokemon)
-  console.log(favPokemon);
+ const showNotification = useFavStore((state) => state.showNotification)
+ console.log(showNotification)
   
   return (
     <>

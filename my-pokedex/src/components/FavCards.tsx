@@ -18,7 +18,7 @@ export default function FavCards({ fav }:FavCardProps ) {
          className="w-32"
         />
         <div className=" w-full flex justify-evenly">
-            <h1>{fav.name}</h1>
+            <h1 className="uppercase">{fav.name}</h1>
             <TrashIcon
             className="w-5"
             onClick={() => removeFromFavs(fav.id)} 
