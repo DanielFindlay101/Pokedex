@@ -7,7 +7,7 @@ import { useFavStore } from "../store/useFavStore"
 
 export default function Select() {
 const showNotification = useFavStore((state) => state.showNotification)
-const [pokemonIndex, setPokemonIndex] = useState('')
+const [pokemonIndex, setPokemonIndex] = useState('1')
 const { pokemons } = useFetch()
 let pokemonID = +pokemonIndex
 
@@ -23,21 +23,17 @@ let pokemonID = +pokemonIndex
           name="pokemons"
           placeholder="select"
           className="w-1/2 p-2 rounded-md"
-          onChange={(e) => 
-            setPokemonIndex(e.target.value)}
+          onChange={(e) => {
+            setPokemonIndex(e.target.value);
+          }}
         >
           {pokemons?.map((pokemon, index) => (
             <option key={index} value={index + 1}>{pokemon.name}</option>
           ))}
         </select>
-        <Card pokemonID={pokemonID}  
+        <Card 
+          pokemonID={pokemonID} 
         />
-        {/* <div className="flex gap-4">
-         <button className="btn btn-accent">Prev</button>
-         <button
-          onClick={() => setPokemonIndex(c => c + 1)} 
-          className="btn btn-accent">Next</button>
-        </div> */}
      </div>
   </>
   )

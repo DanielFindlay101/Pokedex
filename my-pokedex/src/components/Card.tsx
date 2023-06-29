@@ -4,16 +4,17 @@ import { useFavStore } from "../store/useFavStore"
 import axios from 'axios'
 
 interface CardProps { 
-  pokemonID: number
+  pokemonID: number,
 }
 
 export default function Card({ pokemonID }: CardProps) {
-  const [description, setDescription] = useState('')
-  const [type, setType] = useState('')
-  const [pokemonName, setPokemonName] = useState('')
   const addToFavs = useFavStore((state) => state.addToFavs)
   const favPokemon = useFavStore((state) => state.favPokemon)
   const setShowNotification = useFavStore((state) => state.setShowNotification)
+  const [pokemonName, setPokemonName] = useState('')
+  const [description, setDescription] = useState('')
+  const [type, setType] = useState('')
+  const [error, setError] = useState(false)
   
   const getPokemonDescription = async(id: number) => {
    await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
@@ -41,11 +42,21 @@ export default function Card({ pokemonID }: CardProps) {
     getPokemonType(pokemonID)
     getPokemonName(pokemonID)
     localStorage.setItem('favs', JSON.stringify(favPokemon))
+    setError(false)
   }, [pokemonID, favPokemon])
 
   setTimeout(() => {
     setShowNotification(false)
   }, 5000)
+
+  const handleFavourite = (x: number) => {
+    if(favPokemon.find(c => c.id === x)){
+      setError(true)
+      return
+    }
+    addToFavs(pokemonName, pokemonID)
+    setShowNotification(true)
+  }
 
   return (
   <div className="w-96 flex flex-col bg-slate-200 shadow-xl rounded-2xl"> 
@@ -64,14 +75,13 @@ export default function Card({ pokemonID }: CardProps) {
         <p>{description}</p>
         <div className="card-actions bg-red-200 justify-between items-center rounded-md">
           <span className="pl-2">Type: {type}</span>
-         <button onClick={() => { 
-            addToFavs(pokemonName, pokemonID); 
-            setShowNotification(true)}}
+         <button onClick={() => handleFavourite(pokemonID)}
           className="btn btn-secondary rounded-md">
           <span className="text-red-500 text-3xl hover:text-red-300">❤️</span>  
          </button>
         </div>
       </div>
+      {error && <p className="text-center p-1 text-red-600">Pokemon already in favourites!</p>}
       </>
     } 
   </div>

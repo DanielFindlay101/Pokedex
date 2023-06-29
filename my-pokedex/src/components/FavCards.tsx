@@ -13,7 +13,7 @@ export default function FavCards({ fav, deleteFromFavs }:FavCardProps ) {
         <img src={getPokemonImage(fav.id)} alt="pokemon-sprite"
          className="w-32"
         />
-        <div className=" w-full flex justify-evenly">
+        <div className="w-full flex justify-evenly">
             <h1 className="uppercase">{fav.name}</h1>
             <TrashIcon
             className="w-5"

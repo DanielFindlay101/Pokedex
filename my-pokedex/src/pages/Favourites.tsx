@@ -9,9 +9,6 @@ export default function Favourites() {
   const favPokemon = useFavStore((state) => state.favPokemon)
   const removeFromFavs = useFavStore((state) => state.removeFromFavs)
 
-  console.log('storage', favs)
-  console.log('state', favPokemon)
-
   useEffect(() => {
    const myFavs = JSON.parse(localStorage.getItem('favs')!)
    setFavs(myFavs)
@@ -36,9 +33,9 @@ export default function Favourites() {
           <p>You currently have no favourite pokemon</p> 
           :
           <>
-            <div className='flex flex-wrap gap-12 h-screen p-4'>
+            <div className='flex flex-wrap justify-items-start content-start gap-12 h-screen'>
               {favs.map((fav, index) => (
-                <div key={index} className='w-40 h-40 bg-red-200 rounded-lg flex flex-col items-center '>
+                <div key={index} className='w-40 h-40 bg-red-200 rounded-lg flex flex-col items-center shadow-xl'>
                 <FavCards
                   fav={fav}
                   deleteFromFavs = {deleteFromFavs}  
