@@ -24,7 +24,7 @@ export const useFavStore = create<FavState>()((set) => ({
                 name: pokemonName,
                 id: pokemonID
             }
-        ] 
+        ]
     })),
     removeFromFavs: (id) => set((state) => ({
         favPokemon: state.favPokemon.filter((pokemon) => pokemon.id !== id)

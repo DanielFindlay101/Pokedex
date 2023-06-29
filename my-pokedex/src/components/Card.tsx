@@ -12,6 +12,7 @@ export default function Card({ pokemonID }: CardProps) {
   const [type, setType] = useState('')
   const [pokemonName, setPokemonName] = useState('')
   const addToFavs = useFavStore((state) => state.addToFavs)
+  const favPokemon = useFavStore((state) => state.favPokemon)
   const setShowNotification = useFavStore((state) => state.setShowNotification)
   
   const getPokemonDescription = async(id: number) => {
@@ -39,7 +40,8 @@ export default function Card({ pokemonID }: CardProps) {
     getPokemonDescription(pokemonID)
     getPokemonType(pokemonID)
     getPokemonName(pokemonID)
-  }, [pokemonID])
+    localStorage.setItem('favs', JSON.stringify(favPokemon))
+  }, [pokemonID, favPokemon])
 
   setTimeout(() => {
     setShowNotification(false)

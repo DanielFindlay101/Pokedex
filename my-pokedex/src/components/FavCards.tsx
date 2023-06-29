@@ -1,19 +1,15 @@
 import { TrashIcon } from "@heroicons/react/20/solid"
-import { useFavStore } from "../store/useFavStore"
 import getPokemonImage from "../utils/api"
 
 interface FavCardProps {
-    fav: {
-        name: string,
-        id: number
-    }
+    fav: { name: string, id: number }
+    deleteFromFavs: (id: number) => void
 }
 
-export default function FavCards({ fav }:FavCardProps ) {
-    const removeFromFavs = useFavStore((state) => state.removeFromFavs)
+export default function FavCards({ fav, deleteFromFavs }:FavCardProps ) {
 
   return (
-    <div className="w-40 h-40 bg-red-200 rounded-lg flex flex-col items-center">
+    <>
         <img src={getPokemonImage(fav.id)} alt="pokemon-sprite"
          className="w-32"
         />
@@ -21,9 +17,9 @@ export default function FavCards({ fav }:FavCardProps ) {
             <h1 className="uppercase">{fav.name}</h1>
             <TrashIcon
             className="w-5"
-            onClick={() => removeFromFavs(fav.id)} 
+            onClick={() => deleteFromFavs(fav.id)} 
             />
         </div>
-    </div>
+    </>
   )
 }

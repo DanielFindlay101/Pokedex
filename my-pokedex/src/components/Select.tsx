@@ -13,7 +13,7 @@ let pokemonID = +pokemonIndex
 
   return (
     <>
-      <div className="flex flex-col gap-4 items-center bg-blue-300 h-screen p-6">
+      <div className="flex flex-col gap-4 h-screen items-center bg-blue-300 p-6">
        {showNotification && <Notification />} 
         <label htmlFor="location" className="text-lg">
           Select a Pokemon
