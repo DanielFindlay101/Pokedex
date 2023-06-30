@@ -1,8 +1,8 @@
-import Favourites from './pages/Favourites';
-import Home from './pages/Home';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Favourites from "./pages/Favourites";
+import Home from "./pages/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {  
+function App() {
   return (
     <>
       <Router>
@@ -12,7 +12,7 @@ function App() {
         </Routes>
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

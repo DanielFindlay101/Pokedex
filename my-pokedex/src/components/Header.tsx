@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <nav className='flex w-full bg-yellow-100 justify-around items-center p-2'>
-        <h1 className='text-black text-lg'>POKEDEX</h1>
-        <Link to='/favourites'><p className="bg-secondary px-4 rounded-md text-3xl cursor-pointer text-red-500">
-          ❤️
-        </p></Link>
+    <nav className="w-full h-16 bg-yellow-100 flex items-center justify-around">
+      <h1 className="text-black text-lg">POKEDEX</h1>
+      <Link to="/favourites">
+        <button className=" bg-blue-200 p-2 rounded-md text-sm hover:bg-blue-300">
+          Favourites
+        </button>
+      </Link>
     </nav>
-  )
+  );
 }
