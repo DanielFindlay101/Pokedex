@@ -9,6 +9,12 @@ interface FavState {
   removeFromFavs: (id: number | null) => void;
   showNotification: boolean;
   setShowNotification: (val: boolean) => void;
+  pokemonDescription: string;
+  setPokemonDescription: (id: string) => void;
+  pokemonType: string;
+  setPokemonType: (id: string) => void;
+  pokemonName: string;
+  setPokemonName: (id: string) => void;
 }
 
 export const useFavStore = create<FavState>()((set) => ({
@@ -31,5 +37,20 @@ export const useFavStore = create<FavState>()((set) => ({
   removeFromFavs: (id) =>
     set((state) => ({
       favPokemon: state.favPokemon.filter((pokemon) => pokemon.id !== id),
+    })),
+  pokemonDescription: "",
+  setPokemonDescription: (val) =>
+    set((state) => ({
+      pokemonDescription: (state.pokemonDescription = val),
+    })),
+  pokemonType: "",
+  setPokemonType: (val) =>
+    set((state) => ({
+      pokemonType: (state.pokemonType = val),
+    })),
+  pokemonName: "",
+  setPokemonName: (val) =>
+    set((state) => ({
+      pokemonName: (state.pokemonName = val),
     })),
 }));

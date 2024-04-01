@@ -1,7 +1,6 @@
-import getPokemonImage from "../utils/api";
+import { useApi } from "../utils/useApi";
 import { useEffect, useState } from "react";
 import { useFavStore } from "../store/useFavStore";
-import axios from "axios";
 
 interface CardProps {
   pokemonID: number;
@@ -11,30 +10,16 @@ export default function Card({ pokemonID }: CardProps) {
   const addToFavs = useFavStore((state) => state.addToFavs);
   const favPokemon = useFavStore((state) => state.favPokemon);
   const setShowNotification = useFavStore((state) => state.setShowNotification);
-  const [pokemonName, setPokemonName] = useState("");
-  const [description, setDescription] = useState("");
-  const [type, setType] = useState("");
+  const pokemonDescription = useFavStore((state) => state.pokemonDescription);
+  const pokemonType = useFavStore((state) => state.pokemonType);
+  const pokemonName = useFavStore((state) => state.pokemonName);
   const [error, setError] = useState(false);
-
-  const getPokemonDescription = async (id: number) => {
-    await axios
-      .get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
-      .then((res) => {
-        setDescription(res.data.flavor_text_entries[1].flavor_text);
-      });
-  };
-
-  const getPokemonType = async (id: number) => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => {
-      setType(res.data.types[0].type.name);
-    });
-  };
-
-  const getPokemonName = async (id: number) => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => {
-      setPokemonName(res.data.name);
-    });
-  };
+  const {
+    getPokemonImage,
+    getPokemonDescription,
+    getPokemonType,
+    getPokemonName,
+  } = useApi();
 
   useEffect(() => {
     getPokemonDescription(pokemonID);
@@ -77,9 +62,9 @@ export default function Card({ pokemonID }: CardProps) {
           </div>
           <div className="card-body">
             <h2 className="card-title"></h2>
-            <p>{description}</p>
+            <p>{pokemonDescription}</p>
             <div className="card-actions bg-red-200 justify-between items-center rounded-md">
-              <span className="pl-2 uppercase">Type: {type}</span>
+              <span className="pl-2 uppercase">Type: {pokemonType}</span>
               <button
                 onClick={() => handleFavourite(pokemonID)}
                 className="btn btn-secondary rounded-md"

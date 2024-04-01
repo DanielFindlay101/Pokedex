@@ -1,5 +1,5 @@
 import { TrashIcon } from "@heroicons/react/20/solid";
-import getPokemonImage from "../utils/api";
+import { useApi } from "../utils/useApi";
 
 interface FavCardProps {
   fav: { name: string; id: number };
@@ -7,6 +7,7 @@ interface FavCardProps {
 }
 
 export default function FavCards({ fav, deleteFromFavs }: FavCardProps) {
+  const { getPokemonImage } = useApi();
   return (
     <>
       <img
