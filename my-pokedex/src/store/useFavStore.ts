@@ -18,12 +18,15 @@ interface FavState {
 
 export const useFavStore = create<FavState>()((set) => ({
   favPokemon: [],
-  addToFavs: (pokemon) =>
+  addToFavs: (favPokemon) =>
     set((state) => ({
       favPokemon: [
         ...state.favPokemon,
         {
-          pokemon: pokemon,
+          uuid: favPokemon.uuid,
+          name: favPokemon.name,
+          type: favPokemon.type,
+          pokemonID: favPokemon.pokemonID,
         },
       ],
     })),

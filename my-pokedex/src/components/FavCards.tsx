@@ -1,6 +1,7 @@
 import { TrashIcon } from "@heroicons/react/20/solid";
 import { useApi } from "../utils/useApi";
 import { PokemonData } from "../utils/interface";
+import { useDelete } from "../hooks/useDelete";
 
 interface FavCardProps {
   fav: PokemonData;
@@ -8,7 +9,7 @@ interface FavCardProps {
 
 export default function FavCards({ fav }: FavCardProps) {
   const { getPokemonImage } = useApi();
-  console.log(fav);
+  const { deleteFromFavs } = useDelete();
 
   return (
     <>
@@ -19,7 +20,10 @@ export default function FavCards({ fav }: FavCardProps) {
       />
       <div className="w-full flex justify-evenly">
         <h1 className="uppercase">{fav.name}</h1>
-        {/* <TrashIcon className="w-5" onClick={() => deleteFromFavs(fav.id)} /> */}
+        <TrashIcon
+          className="w-5"
+          onClick={() => deleteFromFavs(fav.pokemonID)}
+        />
       </div>
     </>
   );
