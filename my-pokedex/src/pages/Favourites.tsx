@@ -2,23 +2,14 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/20/solid";
 import FavCards from "../components/FavCards";
-import { useFavStore } from "../store/useFavStore";
+import { useSupabase } from "../hooks/useSupabase";
+import { PokemonData } from "../utils/interface";
 
 export default function Favourites() {
-  const [favs, setFavs] = useState([{ name: "", id: 0 }]);
-  const favPokemon = useFavStore((state) => state.favPokemon);
-  const removeFromFavs = useFavStore((state) => state.removeFromFavs);
+  const { favPokemon } = useSupabase();
+  const [favs, setFavs] = useState<PokemonData[]>();
 
-  useEffect(() => {
-    const myFavs = JSON.parse(localStorage.getItem("favs")!);
-    setFavs(myFavs);
-  }, [favPokemon]);
-
-  const deleteFromFavs = (id: number) => {
-    const filtered = favs.filter((x) => x.id !== id);
-    localStorage.setItem("favs", JSON.stringify(filtered));
-    removeFromFavs(id);
-  };
+  console.log(favPokemon);
 
   return (
     <>
@@ -29,19 +20,19 @@ export default function Favourites() {
         </Link>
       </nav>
       <div className="w-full h-screen bg-blue-300 p-10 flex overflow-auto justify-center">
-        {favs.length === 0 ? (
+        {favs?.length === 0 ? (
           <div className="">
             <p>You currently have no favourite pokemon</p>
           </div>
         ) : (
           <>
             <div className="flex flex-wrap justify-center justify-items-start content-start gap-12">
-              {favs.map((fav, index) => (
+              {favs?.map((fav, index) => (
                 <div
                   key={index}
                   className="w-40 h-40 bg-red-200 rounded-lg flex flex-col items-center shadow-xl"
                 >
-                  <FavCards fav={fav} deleteFromFavs={deleteFromFavs} />
+                  <FavCards fav={fav} />
                 </div>
               ))}
             </div>

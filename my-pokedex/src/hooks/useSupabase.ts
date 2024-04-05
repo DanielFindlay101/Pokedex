@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
+import { PokemonData } from "../utils/interface";
 
-export interface PokemonData {
-  name: string;
-  url: string;
-}
 export const useSupabase = () => {
-  const [pokemon, setPokemon] = useState<PokemonData[]>();
+  const [favPokemon, setFavPokemon] = useState<PokemonData[]>();
 
   const fetchPokemon = async () => {
     const { data, error } = await supabase.from("favPokemon").select();
@@ -16,12 +13,12 @@ export const useSupabase = () => {
       return;
     }
 
-    setPokemon(data);
+    setFavPokemon(data);
   };
 
   useEffect(() => {
     fetchPokemon();
   }, []);
 
-  return { pokemon };
+  return { favPokemon };
 };

@@ -9,10 +9,8 @@ export default function Select() {
   const showNotification = useFavStore((state) => state.showNotification);
   const [pokemonIndex, setPokemonIndex] = useState("1");
   const { pokemons } = useFetch();
-  const { pokemon } = useSupabase();
-  let pokemonID = +pokemonIndex;
 
-  console.log("HERE", pokemon);
+  let pokemonID = +pokemonIndex;
 
   return (
     <>
