@@ -3,7 +3,7 @@ import { useState } from "react";
 import Card from "./Card";
 import Notification from "./Notification";
 import { useFavStore } from "../store/useFavStore";
-import { useSupabase } from "../hooks/useSupabase";
+// import { useSupabase } from "../hooks/useSupabase";
 
 export default function Select() {
   const showNotification = useFavStore((state) => state.showNotification);

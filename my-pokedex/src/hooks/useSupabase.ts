@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
 import { PokemonData } from "../utils/interface";
-import { useFavStore } from "../store/useFavStore";
+// import { useFavStore } from "../store/useFavStore";
 
 export const useSupabase = () => {
   const [favPokemon, setFavPokemon] = useState<PokemonData[]>();
