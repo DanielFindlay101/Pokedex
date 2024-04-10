@@ -1,12 +1,9 @@
 import { create } from "zustand";
+import { PokemonData } from "../utils/interface";
 
 interface FavState {
-  favPokemon: {
-    name: string;
-    id: number;
-  }[];
-  addToFavs: (pokemonName: string, pokemonID: number) => void;
-  removeFromFavs: (id: number | null) => void;
+  favPokemon: PokemonData[];
+  // setFavoritePokemon: (val: PokemonData) => void;
   showNotification: boolean;
   setShowNotification: (val: boolean) => void;
   pokemonDescription: string;
@@ -15,28 +12,29 @@ interface FavState {
   setPokemonType: (id: string) => void;
   pokemonName: string;
   setPokemonName: (id: string) => void;
+  showError: boolean;
+  setShowError: (val: boolean) => void;
 }
 
 export const useFavStore = create<FavState>()((set) => ({
   favPokemon: [],
+  // setFavoritePokemon: (favPokemon) => {
+  //   set((state) => ({
+  //     favPokemon: [
+  //       ...state.favPokemon,
+  //       {
+  //         uuid: favPokemon.uuid,
+  //         name: favPokemon.name,
+  //         type: favPokemon.type,
+  //         pokemonID: favPokemon.pokemonID,
+  //       },
+  //     ],
+  //   }));
+  // },
   showNotification: false,
   setShowNotification: (val) =>
     set((state) => ({
       showNotification: (state.showNotification = val),
-    })),
-  addToFavs: (pokemonName, pokemonID) =>
-    set((state) => ({
-      favPokemon: [
-        ...state.favPokemon,
-        {
-          name: pokemonName,
-          id: pokemonID,
-        },
-      ],
-    })),
-  removeFromFavs: (id) =>
-    set((state) => ({
-      favPokemon: state.favPokemon.filter((pokemon) => pokemon.id !== id),
     })),
   pokemonDescription: "",
   setPokemonDescription: (val) =>
@@ -52,5 +50,10 @@ export const useFavStore = create<FavState>()((set) => ({
   setPokemonName: (val) =>
     set((state) => ({
       pokemonName: (state.pokemonName = val),
+    })),
+  showError: false,
+  setShowError: (val) =>
+    set((state) => ({
+      showError: (state.showError = val),
     })),
 }));
