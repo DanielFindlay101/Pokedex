@@ -3,7 +3,7 @@ import { PokemonData } from "../utils/interface";
 
 interface FavState {
   favPokemon: PokemonData[];
-  addToFavs: (val: PokemonData) => void;
+  // setFavoritePokemon: (val: PokemonData) => void;
   showNotification: boolean;
   setShowNotification: (val: boolean) => void;
   pokemonDescription: string;
@@ -18,18 +18,19 @@ interface FavState {
 
 export const useFavStore = create<FavState>()((set) => ({
   favPokemon: [],
-  addToFavs: (favPokemon) =>
-    set((state) => ({
-      favPokemon: [
-        ...state.favPokemon,
-        {
-          uuid: favPokemon.uuid,
-          name: favPokemon.name,
-          type: favPokemon.type,
-          pokemonID: favPokemon.pokemonID,
-        },
-      ],
-    })),
+  // setFavoritePokemon: (favPokemon) => {
+  //   set((state) => ({
+  //     favPokemon: [
+  //       ...state.favPokemon,
+  //       {
+  //         uuid: favPokemon.uuid,
+  //         name: favPokemon.name,
+  //         type: favPokemon.type,
+  //         pokemonID: favPokemon.pokemonID,
+  //       },
+  //     ],
+  //   }));
+  // },
   showNotification: false,
   setShowNotification: (val) =>
     set((state) => ({

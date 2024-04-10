@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/20/solid";
 import FavCards from "../components/FavCards";
 import { useSupabase } from "../hooks/useSupabase";
+import { PokemonData } from "../utils/interface";
+import { useFavStore } from "../store/useFavStore";
 
 export default function Favourites() {
   const { favPokemon } = useSupabase();
-  useEffect(() => {
-    console.log(favPokemon);
-  }, [favPokemon]);
+  console.log("FAV POKEMON", favPokemon);
+
   return (
     <>
       <nav className="bg-green-300 p-4 flex justify-around">

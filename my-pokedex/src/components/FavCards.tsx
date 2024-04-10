@@ -11,6 +11,10 @@ export default function FavCards({ fav }: FavCardProps) {
   const { getPokemonImage } = useApi();
   const { deleteFromFavs } = useDelete();
 
+  const handleDelete = (pokemonId: number) => {
+    deleteFromFavs(pokemonId);
+  };
+
   return (
     <>
       <img
@@ -22,7 +26,7 @@ export default function FavCards({ fav }: FavCardProps) {
         <h1 className="uppercase">{fav.name}</h1>
         <TrashIcon
           className="w-5"
-          onClick={() => deleteFromFavs(fav.pokemonID)}
+          onClick={() => handleDelete(fav.pokemonID)}
         />
       </div>
     </>
