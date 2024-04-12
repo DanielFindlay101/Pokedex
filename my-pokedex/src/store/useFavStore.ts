@@ -14,6 +14,8 @@ interface FavState {
   setPokemonName: (id: string) => void;
   showError: boolean;
   setShowError: (val: boolean) => void;
+  userDetails: any;
+  setUserDetails: (val: any) => void;
 }
 
 export const useFavStore = create<FavState>()((set) => ({
@@ -55,5 +57,10 @@ export const useFavStore = create<FavState>()((set) => ({
   setShowError: (val) =>
     set((state) => ({
       showError: (state.showError = val),
+    })),
+  userDetails: {},
+  setUserDetails: (val) =>
+    set((state) => ({
+      userDetails: (state.userDetails = val),
     })),
 }));
