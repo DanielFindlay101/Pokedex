@@ -15,7 +15,6 @@ export default function Card({ pokemonID }: CardProps) {
   const pokemonDescription = useFavStore((state) => state.pokemonDescription);
   const pokemonType = useFavStore((state) => state.pokemonType);
   const pokemonName = useFavStore((state) => state.pokemonName);
-  const userDetails = useFavStore((state) => state.userDetails);
   const [pokemon, setPokemon] = useState<PokemonData>({
     uuid: 1,
     name: "",
