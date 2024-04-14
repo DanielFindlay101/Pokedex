@@ -1,6 +1,7 @@
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { useSignUp } from "../hooks/useSignUp";
+import { useSignIn } from "../hooks/useSignIn";
 
 interface FormProps {
   child: string;
@@ -10,6 +11,7 @@ export default function Form({ child }: FormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signUp, error } = useSignUp();
+  const { signIn } = useSignIn();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,8 +19,7 @@ export default function Form({ child }: FormProps) {
       signUp(email, password);
     }
     if (child === "Login") {
-      // Put login hook here
-      console.log("Login", email, password);
+      signIn(email, password);
     }
   };
 
@@ -29,7 +30,10 @@ export default function Form({ child }: FormProps) {
       ) : (
         <h1 className="text-2xl font-bold">Login to your account</h1>
       )}
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center gap-4"
+      >
         <label className="input w-full flex items-center gap-2 max-w-xs bg-slate-50 border-blue-300">
           <EnvelopeIcon className="w-5 h-5" />
           <input
@@ -43,7 +47,7 @@ export default function Form({ child }: FormProps) {
         <label className="input w-full flex items-center gap-2 max-w-xs bg-slate-50 border-blue-300">
           <LockClosedIcon className="w-5 h-5" />
           <input
-            type="text"
+            type="password"
             className="grow"
             placeholder="Password"
             value={password}

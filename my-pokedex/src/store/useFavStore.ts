@@ -1,8 +1,8 @@
 import { create } from "zustand";
-import { PokemonData } from "../utils/interface";
+import { User } from "@supabase/supabase-js";
 
 interface FavState {
-  favPokemon: PokemonData[];
+  // favPokemon: PokemonData[];
   // setFavoritePokemon: (val: PokemonData) => void;
   showNotification: boolean;
   setShowNotification: (val: boolean) => void;
@@ -14,12 +14,13 @@ interface FavState {
   setPokemonName: (id: string) => void;
   showError: boolean;
   setShowError: (val: boolean) => void;
-  userDetails: any;
-  setUserDetails: (val: any) => void;
+  //Value of a signed in user
+  userDetails: User | null;
+  setUserDetails: (val: User | null) => void;
 }
 
 export const useFavStore = create<FavState>()((set) => ({
-  favPokemon: [],
+  // favPokemon: [],
   // setFavoritePokemon: (favPokemon) => {
   //   set((state) => ({
   //     favPokemon: [
@@ -58,7 +59,7 @@ export const useFavStore = create<FavState>()((set) => ({
     set((state) => ({
       showError: (state.showError = val),
     })),
-  userDetails: {},
+  userDetails: null,
   setUserDetails: (val) =>
     set((state) => ({
       userDetails: (state.userDetails = val),
