@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { PokemonData } from "../utils/interface";
 import { User } from "@supabase/supabase-js";
 
 interface FavState {
