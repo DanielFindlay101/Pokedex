@@ -1,4 +1,8 @@
-import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/20/solid";
+import {
+  EnvelopeIcon,
+  LockClosedIcon,
+  UserIcon,
+} from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { useSignUp } from "../hooks/useSignUp";
 import { useSignIn } from "../hooks/useSignIn";
@@ -10,13 +14,14 @@ interface FormProps {
 export default function Form({ child }: FormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const { signUp, error } = useSignUp();
   const { signIn } = useSignIn();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (child === "Signup") {
-      signUp(email, password);
+      signUp(email, password, username);
     }
     if (child === "Login") {
       signIn(email, password);
@@ -34,6 +39,18 @@ export default function Form({ child }: FormProps) {
         onSubmit={handleSubmit}
         className="flex flex-col items-center gap-4"
       >
+        {child === "Signup" && (
+          <label className="input w-full flex items-center gap-2 max-w-xs bg-slate-50 border-blue-300">
+            <UserIcon className="w-5 h-5" />
+            <input
+              type="text"
+              className="grow"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </label>
+        )}
         <label className="input w-full flex items-center gap-2 max-w-xs bg-slate-50 border-blue-300">
           <EnvelopeIcon className="w-5 h-5" />
           <input
