@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, devtools } from "zustand/middleware";
 import { User } from "@supabase/supabase-js";
 
 interface FavState {
@@ -19,49 +20,53 @@ interface FavState {
   setUserDetails: (val: User | null) => void;
 }
 
-export const useFavStore = create<FavState>()((set) => ({
-  // favPokemon: [],
-  // setFavoritePokemon: (favPokemon) => {
-  //   set((state) => ({
-  //     favPokemon: [
-  //       ...state.favPokemon,
-  //       {
-  //         uuid: favPokemon.uuid,
-  //         name: favPokemon.name,
-  //         type: favPokemon.type,
-  //         pokemonID: favPokemon.pokemonID,
-  //       },
-  //     ],
-  //   }));
-  // },
-  showNotification: false,
-  setShowNotification: (val) =>
-    set((state) => ({
-      showNotification: (state.showNotification = val),
-    })),
-  pokemonDescription: "",
-  setPokemonDescription: (val) =>
-    set((state) => ({
-      pokemonDescription: (state.pokemonDescription = val),
-    })),
-  pokemonType: "",
-  setPokemonType: (val) =>
-    set((state) => ({
-      pokemonType: (state.pokemonType = val),
-    })),
-  pokemonName: "",
-  setPokemonName: (val) =>
-    set((state) => ({
-      pokemonName: (state.pokemonName = val),
-    })),
-  showError: false,
-  setShowError: (val) =>
-    set((state) => ({
-      showError: (state.showError = val),
-    })),
-  userDetails: null,
-  setUserDetails: (val) =>
-    set((state) => ({
-      userDetails: (state.userDetails = val),
-    })),
-}));
+export const useFavStore = create<FavState>()(
+  devtools(
+    persist(
+      (set) => ({
+        showNotification: false,
+        setShowNotification: (val) => {
+          set({ showNotification: val });
+        },
+        pokemonDescription: "",
+        setPokemonDescription: (val) => {
+          set({ pokemonDescription: val });
+        },
+        pokemonType: "",
+        setPokemonType: (val) => {
+          set({ pokemonType: val });
+        },
+        pokemonName: "",
+        setPokemonName: (val) => {
+          set({ pokemonName: val });
+        },
+        showError: false,
+        setShowError: (val) => {
+          set({ showError: val });
+        },
+        userDetails: null,
+        setUserDetails: (val) => {
+          set({ userDetails: val });
+        },
+      }),
+      {
+        name: "favPokemon",
+      }
+    )
+  )
+);
+
+// favPokemon: [],
+// setFavoritePokemon: (favPokemon) => {
+//   set((state) => ({
+//     favPokemon: [
+//       ...state.favPokemon,
+//       {
+//         uuid: favPokemon.uuid,
+//         name: favPokemon.name,
+//         type: favPokemon.type,
+//         pokemonID: favPokemon.pokemonID,
+//       },
+//     ],
+//   }));
+// },
