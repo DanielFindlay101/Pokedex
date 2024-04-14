@@ -8,18 +8,11 @@ import {
 } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import { useEffect } from "react";
 import { useFavStore } from "./store/useFavStore";
 
 function App() {
   const user = useFavStore((state) => state.userDetails);
-  useEffect(() => {
-    if (!user) {
-      console.log("No user");
-    } else {
-      console.log("User", user);
-    }
-  }, [user]);
+
   return (
     <>
       <Router>
