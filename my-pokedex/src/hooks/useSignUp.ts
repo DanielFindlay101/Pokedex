@@ -8,10 +8,15 @@ export const useSignUp = () => {
   const { setUserDetails } = useFavStore();
   const navigate = useNavigate();
 
-  const signUp = async (email: string, password: string) => {
+  const signUp = async (email: string, password: string, username: string) => {
     const { data, error } = await supabase.auth.signUp({
       email: email,
       password: password,
+      options: {
+        data: {
+          username: username,
+        },
+      },
     });
     if (error) {
       setError(error.message);
