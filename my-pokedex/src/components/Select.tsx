@@ -10,7 +10,7 @@ export default function Select() {
   const [pokemonIndex, setPokemonIndex] = useState("1");
   const { pokemons } = useFetch();
 
-  let pokemonID = +pokemonIndex;
+  const pokemonID = +pokemonIndex;
 
   return (
     <>

@@ -7,12 +7,11 @@ export default function Header() {
   const { logout } = useLogout();
   const username = user?.user_metadata.username;
 
-  console.log(user);
   return (
     <nav className="w-full px-6 h-16 bg-yellow-100 flex items-center justify-between">
       <div>
         <h1 className="text-black text-lg">POKEDEX</h1>
-        <p className="text-black text-xs">Welcome, {username}</p>
+        <p className="text-black text-sm">Welcome, {username}</p>
       </div>
       <div className="flex gap-4">
         <Link to="/favourites">
