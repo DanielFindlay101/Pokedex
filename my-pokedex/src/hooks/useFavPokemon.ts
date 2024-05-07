@@ -1,10 +1,12 @@
 import { supabase } from "../../supabase";
 import { PokemonData } from "../utils/interface";
 import { useFavStore } from "../store/useFavStore";
+import { useId } from "react";
 
 export const useFavPokemon = () => {
   const setShowError = useFavStore((state) => state.setShowError);
   const user = useFavStore((state) => state.userDetails);
+  const id = useId();
 
   const addToFavs = async (data: PokemonData) => {
     const { error } = await supabase.from("favPokemon").insert({

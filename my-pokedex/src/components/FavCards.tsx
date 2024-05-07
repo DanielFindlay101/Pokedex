@@ -15,6 +15,8 @@ export default function FavCards({ fav }: FavCardProps) {
     deleteFromFavs(pokemonId);
   };
 
+  console.log("FAV", fav);
+
   return (
     <>
       <img

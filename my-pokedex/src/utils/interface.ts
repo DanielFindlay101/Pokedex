@@ -4,3 +4,9 @@ export interface PokemonData {
   type: string;
   pokemonID: number;
 }
+
+export interface userData {
+  id: number;
+  user_email: string;
+  user_name: string;
+}

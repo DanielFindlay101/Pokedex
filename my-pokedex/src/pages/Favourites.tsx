@@ -8,7 +8,6 @@ import { useSupabase } from "../hooks/useSupabase";
 
 export default function Favourites() {
   const { favPokemon } = useSupabase();
-  console.log("FAV POKEMON", favPokemon);
 
   return (
     <>

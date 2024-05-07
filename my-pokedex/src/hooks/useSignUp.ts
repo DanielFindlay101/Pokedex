@@ -8,6 +8,7 @@ export const useSignUp = () => {
   const { setUserDetails } = useFavStore();
   const navigate = useNavigate();
 
+  // Authenticate the user
   const signUp = async (email: string, password: string, username: string) => {
     const { data, error } = await supabase.auth.signUp({
       email: email,
@@ -27,5 +28,20 @@ export const useSignUp = () => {
       navigate("/");
     }
   };
-  return { signUp, error };
+  // Create a new user in the UserTable
+  const createUser = async (email: string, username: string) => {
+    const { error } = await supabase.from("users").insert({
+      user_email: email,
+      user_name: username,
+    });
+    if (error) {
+      setError(error.message);
+    }
+  };
+
+  return {
+    signUp,
+    error,
+    createUser,
+  };
 };
