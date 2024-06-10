@@ -15,14 +15,13 @@ export default function Form({ child }: FormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const { signUp, error, createUser } = useSignUp();
+  const { signUp, error } = useSignUp();
   const { signIn } = useSignIn();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (child === "Signup") {
       signUp(email, password, username);
-      createUser(email, username);
     }
     if (child === "Login") {
       signIn(email, password);

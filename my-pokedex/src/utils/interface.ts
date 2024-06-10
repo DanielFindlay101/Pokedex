@@ -5,6 +5,11 @@ export interface PokemonData {
   pokemonID: number;
 }
 
+export interface FavPokemon {
+  user_id: string;
+  pokemon_id: number;
+}
+
 export interface userData {
   id: number;
   user_email: string;

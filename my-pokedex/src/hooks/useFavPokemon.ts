@@ -5,17 +5,12 @@ import { useId } from "react";
 
 export const useFavPokemon = () => {
   const setShowError = useFavStore((state) => state.setShowError);
-  const user = useFavStore((state) => state.userDetails);
-  const id = useId();
+  const userId = useFavStore((state) => state.userDetails?.id);
 
   const addToFavs = async (data: PokemonData) => {
-    const { error } = await supabase.from("favPokemon").insert({
-      uuid: data.uuid,
-      name: data.name,
-      type: data.type,
-      pokemonID: data.pokemonID,
-      user_email: user?.email,
-    });
+    const { error } = await supabase
+      .from("user_fav")
+      .insert({ user_id: userId, pokemon_id: data.pokemonID });
     if (error) {
       console.log("Error", error);
       setShowError(true);

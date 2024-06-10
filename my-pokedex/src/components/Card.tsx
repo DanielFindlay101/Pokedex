@@ -2,7 +2,7 @@ import { useApi } from "../utils/useApi";
 import { useEffect, useState } from "react";
 import { useFavStore } from "../store/useFavStore";
 import { PokemonData } from "../utils/interface";
-import { useFavPokemon } from "../hooks/useFavPokemon";
+import { supabase } from "../../supabase";
 
 interface CardProps {
   pokemonID: number;
@@ -15,6 +15,7 @@ export default function Card({ pokemonID }: CardProps) {
   const pokemonDescription = useFavStore((state) => state.pokemonDescription);
   const pokemonType = useFavStore((state) => state.pokemonType);
   const pokemonName = useFavStore((state) => state.pokemonName);
+  const userId = useFavStore((state) => state.userDetails?.id);
   const [pokemon, setPokemon] = useState<PokemonData>({
     uuid: 1,
     name: "",
@@ -27,7 +28,6 @@ export default function Card({ pokemonID }: CardProps) {
     getPokemonType,
     getPokemonName,
   } = useApi();
-  const { addToFavs } = useFavPokemon();
 
   useEffect(() => {
     getPokemonDescription(pokemonID);
@@ -42,12 +42,10 @@ export default function Card({ pokemonID }: CardProps) {
     setShowError(false);
   }, [pokemonID, pokemonName, pokemonType]);
 
-  const handleFavourite = (pokemon: PokemonData) => {
-    if (showError) {
-      return;
-    }
-    addToFavs(pokemon);
-    setShowNotification(true);
+  const handleFavourite = async (pokemon: PokemonData) => {
+    const { error } = await supabase
+      .from("user_fav")
+      .insert({ user_id: userId, pokemon_id: pokemon.pokemonID });
   };
 
   setTimeout(() => {
