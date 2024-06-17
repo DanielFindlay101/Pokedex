@@ -3,8 +3,6 @@ import { persist, devtools } from "zustand/middleware";
 import { User } from "@supabase/supabase-js";
 
 interface FavState {
-  // favPokemon: PokemonData[];
-  // setFavoritePokemon: (val: PokemonData) => void;
   showNotification: boolean;
   setShowNotification: (val: boolean) => void;
   pokemonDescription: string;
@@ -55,18 +53,3 @@ export const useFavStore = create<FavState>()(
     )
   )
 );
-
-// favPokemon: [],
-// setFavoritePokemon: (favPokemon) => {
-//   set((state) => ({
-//     favPokemon: [
-//       ...state.favPokemon,
-//       {
-//         uuid: favPokemon.uuid,
-//         name: favPokemon.name,
-//         type: favPokemon.type,
-//         pokemonID: favPokemon.pokemonID,
-//       },
-//     ],
-//   }));
-// },

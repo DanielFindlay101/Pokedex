@@ -1,12 +1,16 @@
-import { supabase } from "../../supabase";
+// import { supabase } from "../../supabase";
 
-export const useDelete = () => {
-  const deleteFromFavs = async (id: number) => {
-    const { error } = await supabase.from("favPokemon").delete().eq("uuid", id);
-    if (error) {
-      console.log("Error", error);
-    }
-  };
-
-  return { deleteFromFavs };
-};
+// export const useDelete = () => {
+//   const deleteFromFavs = async (id: number) => {
+//     const { error } = await supabase
+//       .from("user_favs")
+//       .delete()
+//       .eq("pokemon_id", id);
+//     console.log(id);
+//     if (error) {
+//       console.log("Error", error);
+//     }
+//   };
+//   deleteFromFavs(id);
+//   return { deleteFromFavs };
+// };

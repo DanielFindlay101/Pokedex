@@ -22,8 +22,7 @@ export default function Form({ child }: FormProps) {
     e.preventDefault();
     if (child === "Signup") {
       signUp(email, password, username);
-    }
-    if (child === "Login") {
+    } else {
       signIn(email, password);
     }
   };

@@ -8,10 +8,5 @@ export interface PokemonData {
 export interface FavPokemon {
   user_id: string;
   pokemon_id: number;
-}
-
-export interface userData {
-  id: number;
-  user_email: string;
-  user_name: string;
+  pokemon_name: string;
 }

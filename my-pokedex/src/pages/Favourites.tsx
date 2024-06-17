@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
-// import { useEffect, useState } from "react";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/20/solid";
 import FavCards from "../components/FavCards";
-import { useGetFavs } from "../hooks/useGetFavs";
-// import { PokemonData } from "../utils/interface";
-// import { useFavStore } from "../store/useFavStore";
+import { useHandleFavs } from "../hooks/useHandleFavs";
 
 export default function Favourites() {
-  const { favPokemon } = useGetFavs();
+  const { favPokemon } = useHandleFavs();
 
   return (
     <>
