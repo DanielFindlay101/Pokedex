@@ -67,7 +67,7 @@ export default function Card({ pokemonID }: CardProps) {
           <div className="card-body">
             <h2 className="card-title"></h2>
             <p>{pokemonDescription}</p>
-            <div className="card-actions bg-red-200 justify-between items-center rounded-md">
+            <div className="card-actions bg-red-300 justify-between items-center rounded-md">
               <span className="pl-2 uppercase">Type: {pokemonType}</span>
               <button
                 onClick={() => handleFavourite(pokemon)}
