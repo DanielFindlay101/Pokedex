@@ -14,8 +14,6 @@ function App() {
   const user = useFavStore((state) => state.userDetails);
   const error = useFavStore((state) => state.showError);
 
-  console.log(error);
-
   return (
     <>
       <Router>

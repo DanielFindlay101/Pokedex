@@ -14,6 +14,7 @@ export const useFavPokemon = () => {
       .eq("pokemon_id", pokemon.pokemonID)
       .eq("user_id", userId);
     if (data && data.length > 0) {
+      setShowError(true);
       return;
     }
     const { error } = await supabase.from("user_favs").insert({
